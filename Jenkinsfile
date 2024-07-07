@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('GitCheckout') {
             steps {
-                git 'https://github.com/rajsumanth19/Mission.git'
+                git branch: 'main' , url: 'https://github.com/rajsumanth19/Mission.git'
             }
         }
 
