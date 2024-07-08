@@ -36,22 +36,7 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            environment {
-                scannerHome = tool "sonar-scanner"
-            }
-            steps {
-                withSonarQubeEnv('sonarserver') {
-                    sh '''
-                        $scannerHome/bin/sonar-scanner -Dsonar.projectkey=vprofile\
-                        -Dsonar.projectName=Mission \
-                        -Dsonar.projectVersion=1.0\
-                        -Dsonar.sources=src/ \
-                        -Dsonar.junit.reportPaths=target/surefire-reports
-                    '''
-                }
-            }
-        }
+        
 
         stage('Build') {
             steps {
