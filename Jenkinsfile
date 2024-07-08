@@ -38,14 +38,17 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sonar') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner \
+                withSonarQubeEnv('sonarserver') {
+                    sh '''
+                        $SCANNER_HOME/bin/sonar-scanner \
                         -Dsonar.projectKey=Mission \
                         -Dsonar.projectName=Mission \
-                        -Dsonar.java.binaries=.'''
-
+                        -Dsonar.junit.reportPaths=target/surefire-reports
+                    '''
                 }
             }
+                
+            
         }
 
         stage('Build') {
